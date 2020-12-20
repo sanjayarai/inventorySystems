@@ -20,6 +20,9 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProductInformation extends JFrame {
 
@@ -30,6 +33,7 @@ public class ProductInformation extends JFrame {
 	StockService stockServ = new StockServiceImpl();
 	private JLabel lblNewLabel_1;
 	private JTextField searchFld;
+	private JButton btnNewButton;
 	/**
 	 * Launch the application.
 	 */
@@ -57,6 +61,7 @@ public class ProductInformation extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.add(getBtnNewButton());
 		contentPane.add(getSearchFld());
 		contentPane.add(getLblNewLabel_1());
 		contentPane.add(getScrollPane());
@@ -132,5 +137,20 @@ public class ProductInformation extends JFrame {
 			searchFld.setColumns(10);
 		}
 		return searchFld;
+	}
+	private JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("BACK");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new Dashboard().setVisible(true);
+					dispose();
+				}
+			});
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+			btnNewButton.setForeground(Color.BLACK);
+			btnNewButton.setBounds(30, 33, 113, 35);
+		}
+		return btnNewButton;
 	}
 }

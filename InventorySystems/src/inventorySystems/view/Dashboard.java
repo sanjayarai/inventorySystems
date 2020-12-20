@@ -115,6 +115,7 @@ public class Dashboard extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					new ProductInformation().setVisible(true);
+					dispose();
 				}
 			});
 			lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.LEFT);
