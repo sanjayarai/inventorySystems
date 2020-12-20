@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Dashboard extends JFrame {
 
@@ -109,6 +111,12 @@ public class Dashboard extends JFrame {
 	private JLabel getLblNewLabel_1_3() {
 		if (lblNewLabel_1_3 == null) {
 			lblNewLabel_1_3 = new JLabel("Product Information");
+			lblNewLabel_1_3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					new ProductInformation().setVisible(true);
+				}
+			});
 			lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.LEFT);
 			lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblNewLabel_1_3.setBounds(452, 11, 157, 50);

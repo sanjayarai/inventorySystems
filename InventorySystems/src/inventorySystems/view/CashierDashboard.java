@@ -114,6 +114,12 @@ public class CashierDashboard extends JFrame {
 	private JLabel getLblNewLabel_1_3() {
 		if (lblNewLabel_1_3 == null) {
 			lblNewLabel_1_3 = new JLabel("Stock");
+			lblNewLabel_1_3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					new StockForm().setVisible(true);
+				}
+			});
 			ImageIcon icon = new ImageIcon("C:\\Users\\yakha\\Desktop\\ImageJavaswing\\stock.png");
 			Image scaleImage = icon.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			lblNewLabel_1_3.setIcon(new ImageIcon(scaleImage));
