@@ -118,6 +118,7 @@ public class CashierDashboard extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					new StockForm().setVisible(true);
+					dispose();
 				}
 			});
 			ImageIcon icon = new ImageIcon("C:\\Users\\yakha\\Desktop\\ImageJavaswing\\stock.png");
@@ -157,6 +158,7 @@ public class CashierDashboard extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					new CashierForm().setVisible(true);
+					dispose();
 				}
 			});
 			ImageIcon icon = new ImageIcon("C:\\\\Users\\\\yakha\\\\Desktop\\\\ImageJavaswing\\\\cashier.png");

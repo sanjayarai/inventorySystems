@@ -54,6 +54,7 @@ public class StockForm extends JFrame {
 	private JTextField mrpFld;
 	private JLabel lblNewLabel_1_1_1;
 	private JTextField searchFld;
+	private JButton btnBack;
 	/**
 	 * Launch the application.
 	 */
@@ -81,6 +82,7 @@ public class StockForm extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.add(getBtnBack());
 		contentPane.add(getSearchFld());
 		contentPane.add(getLblNewLabel_1_1_1());
 		contentPane.add(getMrpFld());
@@ -214,7 +216,7 @@ public class StockForm extends JFrame {
 					}
 				}
 			});
-			btnNewButton.setBounds(125, 425, 101, 31);
+			btnNewButton.setBounds(155, 422, 101, 31);
 		}
 		return btnNewButton;
 	}
@@ -236,7 +238,7 @@ public class StockForm extends JFrame {
 					}
 				}
 			});
-			editBtn.setBounds(243, 425, 101, 31);
+			editBtn.setBounds(273, 422, 101, 31);
 		}
 		return editBtn;
 	}
@@ -366,5 +368,18 @@ public class StockForm extends JFrame {
 			searchFld.setBounds(683, 27, 183, 31);
 		}
 		return searchFld;
+	}
+	private JButton getBtnBack() {
+		if (btnBack == null) {
+			btnBack = new JButton("Back");
+			btnBack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new CashierDashboard().setVisible(true);
+					dispose();
+				}
+			});
+			btnBack.setBounds(51, 422, 94, 31);
+		}
+		return btnBack;
 	}
 }

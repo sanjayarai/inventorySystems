@@ -57,6 +57,7 @@ public class CashierForm extends JFrame {
 	private JLabel csnameErr_1;
 	private JLabel csnameErr_2;
 	private JLabel passErr;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -85,6 +86,7 @@ public class CashierForm extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.add(getBtnBack());
 		contentPane.add(getMnumberErr());
 		contentPane.add(getScrollPane());
 		contentPane.add(getBtnDelete());
@@ -113,6 +115,7 @@ public class CashierForm extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\yakha\\Desktop\\bg.jpg"));
 			lblNewLabel.setBounds(10, 11, 863, 542);
 		}
@@ -241,6 +244,7 @@ public class CashierForm extends JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Add New");
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cs.setCashiername(cashiernameFld.getText());
@@ -256,13 +260,14 @@ public class CashierForm extends JFrame {
 					}
 				}
 			});
-			btnNewButton.setBounds(30, 429, 101, 31);
+			btnNewButton.setBounds(118, 433, 107, 31);
 		}
 		return btnNewButton;
 	}
 	private JButton getEditBtn() {
 		if (editBtn == null) {
 			editBtn = new JButton("Edit");
+			editBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 			editBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(table.getSelectedRow() < 0) {
@@ -278,13 +283,14 @@ public class CashierForm extends JFrame {
 					}
 				}
 			});
-			editBtn.setBounds(148, 429, 101, 31);
+			editBtn.setBounds(235, 433, 69, 31);
 		}
 		return editBtn;
 	}
 	private JButton getBtnDelete() {
 		if (btnDelete == null) {
 			btnDelete = new JButton("Delete");
+			btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
 			btnDelete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(table.getSelectedRow() < 0 ) {
@@ -303,14 +309,14 @@ public class CashierForm extends JFrame {
 					}
 				}
 			});
-			btnDelete.setBounds(259, 429, 108, 31);
+			btnDelete.setBounds(314, 431, 84, 31);
 		}
 		return btnDelete;
 	}
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(392, 24, 474, 523);
+			scrollPane.setBounds(402, 24, 464, 523);
 			scrollPane.setViewportView(getTable());
 		}
 		return scrollPane;
@@ -376,5 +382,19 @@ public class CashierForm extends JFrame {
 		for(Cashier cs: csList) {
 			model.addRow(new Object[] {cs.getId(), cs.getCashiername(),cs.getMobilenumber(),cs.getAddress(), cs.getEmail(),cs.getPassword()});
 		}
+	}
+	private JButton getBtnBack() {
+		if (btnBack == null) {
+			btnBack = new JButton("Back");
+			btnBack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new CashierDashboard().setVisible(true);
+					dispose();
+				}
+			});
+			btnBack.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnBack.setBounds(24, 432, 84, 31);
+		}
+		return btnBack;
 	}
 }
