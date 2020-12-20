@@ -17,6 +17,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Dashboard extends JFrame {
 
@@ -145,6 +147,12 @@ public class Dashboard extends JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Create Bill");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new BillForm().setVisible(true);
+					dispose();
+				}
+			});
 			btnNewButton.setBorder(null);
 			btnNewButton.setBackground(new Color(255, 250, 205));
 			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
