@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -17,7 +18,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import inventorySystems.model.Bill;
 import inventorySystems.model.Stock;
+import inventorySystems.service.BillService;
+import inventorySystems.service.BillServiceImpl;
 import inventorySystems.service.StockService;
 import inventorySystems.service.StockServiceImpl;
 
@@ -50,7 +54,7 @@ public class BillForm extends JFrame {
 	private JTable table;
 	private JLabel lblNewLabel_2;
 	private JButton btnBack;
-
+	BillService billServ = new BillServiceImpl();
 	/**
 	 * Launch the application.
 	 */
@@ -98,6 +102,7 @@ public class BillForm extends JFrame {
 		contentPane.add(getLblNewLabel_1_1());
 		contentPane.add(getLblNewLabel_1());
 		contentPane.add(getLblNewLabel());
+		displayBillInformation();
 	}
 
 	private JLabel getLblNewLabel() {
@@ -236,6 +241,27 @@ public class BillForm extends JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Add");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Bill bi = new Bill();
+					bi.setBill_no(Integer.parseInt(billnoFld.getText()));
+					bi.setCustomer_name(customernameFld.getText());
+					bi.setProduct_id((int) productidCombo.getSelectedItem());
+					
+					bi.setName(nameFld.getText());
+					bi.setMrp(Integer.parseInt(mrpFld.getText()));
+					bi.setQuantity(Integer.parseInt(quantityFld.getText()));
+					bi.setDiscount(Integer.parseInt(discountFld.getText()));
+					if(billServ.addBill(bi)) {
+						JOptionPane.showMessageDialog(null, "Added successfully");
+						displayBillInformation();
+					}else {
+						JOptionPane.showMessageDialog(null, "Failed");
+					}
+					
+					
+				}
+			});
 			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 			btnNewButton.setBounds(177, 448, 106, 44);
 		}
@@ -264,7 +290,7 @@ public class BillForm extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"Quantity", "Name", "Mrp", "Price"
+					"Quantity", "Name", "Mrp", "Discount"
 				}
 			));
 		}
@@ -285,11 +311,21 @@ public class BillForm extends JFrame {
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new Dashboard().setVisible(true);
+					dispose();
 				}
 			});
 			btnBack.setFont(new Font("Tahoma", Font.BOLD, 16));
 			btnBack.setBounds(54, 448, 106, 44);
 		}
 		return btnBack;
+	}
+	public void displayBillInformation() {
+		List<Bill> billList= billServ.getAllBill();
+		DefaultTableModel model	= (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+		for(Bill bi: billList) {
+			model.addRow(new Object[] { bi.getQuantity(), bi.getName(), bi.getMrp(), bi.getDiscount()});
+		}
+		
 	}
 }
